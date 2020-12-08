@@ -7,6 +7,11 @@ In its current state, this package serves two purposes:
 
 While the package is not meant for nor setup for user-friendly general use, the interested reader should nevertheless find the code to be mostly straightforward to generalize.
 
+# Installation
+
+The following installation guide assumes a clean install of Julia Version 1.3.1 (2019-12-30), which can be found here: https://julialang.org/downloads/oldreleases/
+Newer Julia releases may work if all the appropriate dependenceies can be resolved.
+
 # References
 
 - Gutleb, T. S. (2020). A fast sparse spectral method for nonlinear integro-differential Volterra equations with general kernels. arXiv:2005.06081.
