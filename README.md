@@ -9,7 +9,7 @@ While the package is not meant for nor setup for user-friendly general use, the 
 
 # Installation
 
-The following installation guide assumes a clean install of Julia Version 1.3.1 (2019-12-30), which can be found here: https://julialang.org/downloads/oldreleases/
+The following installation guide assumes a clean install of Julia Version 1.3.1 (2019-12-30), which can be found [here](https://julialang.org/downloads/oldreleases/).
 Newer Julia releases may work if all the appropriate dependenceies can be resolved.
 
 # References
