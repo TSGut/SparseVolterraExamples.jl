@@ -5,7 +5,7 @@ In its current state, this package serves two purposes:
 - Complimentary role to the paper, providing code samples to those curious about the actual implementation.
 - Reproduce the figures found in the paper by providing a documented (via comments) step-by-step walkthrough of each of the numerical experiments in the paper.
 
-While the package is not meant for nor setup for user-friendly general use, the interested reader should nevertheless find the code to be mostly straightforward to generalize.
+While the package is not meant for nor setup for user-friendly general use, the interested reader should nevertheless find the code to be straightforward to generalize.
 
 # Installation
 
