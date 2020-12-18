@@ -14,7 +14,7 @@ Newer Julia releases may work if all the appropriate dependencies can be resolve
 
 As an unregistered Julia package, you can install this package via ```] add https://github.com/TSGut/SparseVolterraExamples.jl``` or alternatively ```Pkg.add(PackageSpec(url="https://github.com/TSGut/SparseVolterraExamples.jl"))```. Test whether everything works as intended by executing ```Pkg.test("SparseVolterraExamples")``` (this may take a few minutes depending on your hardware). Assuming this executes without errors, you can then explore the files in the examples folders.
 
-# Using the package to reproduce results in the paper
+# Using the package
 
 The examples folder contains scripts with detailed comments. Evaluating line-by-line from the top walks the user through the process of obtaining the solutions described in the paper. Along with the comments in the src folder this should be sufficient to generalize it to other use cases. Keep in mind that to run the examples, you will have to install the packages specified via ```using``` at the top of each example and are part of the dependencies of this package.
 
