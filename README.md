@@ -1,5 +1,5 @@
 # SparseVolterraExamples.jl
-This Julia package containts examples which implement the method described in https://arxiv.org/abs/2005.06081 for solving nonlinear and integro-differential Volterra equations. It additionally also contains some linear examples.
+This Julia package contains examples which implement the method described in https://arxiv.org/abs/2005.06081 for solving nonlinear and integro-differential Volterra equations. It additionally also contains some linear examples.
 
 In its current state, this package serves two purposes: 
 - Complimentary role to the paper, providing code samples to those curious about the actual implementation.
@@ -10,7 +10,11 @@ While the package is not meant for nor setup for user-friendly general use, the 
 # Installation
 
 The following installation guide assumes a clean install of Julia Version 1.3.1 (2019-12-30), which can be found [here](https://julialang.org/downloads/oldreleases/).
-Newer Julia releases may work if all the appropriate dependenceies can be resolved.
+Newer Julia releases may work if all the appropriate dependencies can be resolved.
+
+# Using the package to reproduce results in the paper
+
+The examples folder contains scripts with detailed comments. Evaluating line-by-line from the top walks the user through the process of obtaining the solutions described in the paper. Along with the comments in the src folder this should be sufficient to generalize it to other use cases.
 
 # References
 
