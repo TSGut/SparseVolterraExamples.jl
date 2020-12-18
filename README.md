@@ -9,7 +9,7 @@ While the package is not meant for nor setup for user-friendly general use, the 
 
 # Installation
 
-The following installation guide assumes a clean install of Julia Version 1.3.1 (2019-12-30), which can be found [here](https://julialang.org/downloads/oldreleases/).
+The following installation guide assumes a clean install of Julia Version 1.3.1 (2019-12-30), which can be found [here](https://julialang.org/downloads/oldreleases/). This is the version in which the package was written and tested.
 Newer Julia releases may work if all the appropriate dependencies can be resolved.
 
 As an unregistered Julia package, you can install this package via ```] add https://github.com/TSGut/SparseVolterraExamples.jl``` or alternatively ```Pkg.add(PackageSpec(url="https://github.com/TSGut/SparseVolterraExamples.jl"))```. Test whether everything works as intended by executing ```Pkg.test("SparseVolterraExamples")``` (this may take a few minutes depending on your hardware). Assuming this executes without errors, you can then explore the files in the examples folders.
