@@ -24,7 +24,7 @@ DD = 1                      # Highest derivative order of the problem
     n = 28                            # Set some desired polynomial degree of approximation.
 ####
 ## Now we can set up the appropriate objective function
-objective(x) = triNonLinearIntegroDiffVolterraObjective(x,f,1,g,n,DD,conditions,lincomb)
+objective(x) = triNonLinearIntegroDiffVolterraObjective(x,f,K,g,n,DD,conditions,lincomb)
 
 ####
 ## Solve using basic Newton iteration with a zero vector guess

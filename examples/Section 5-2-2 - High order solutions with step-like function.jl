@@ -6,7 +6,7 @@
 ## We only include our own side of the implementation here. See the references in the paper for Chebfun.
 ##
 
-using ApproxFun, MultivariateOrthogonalPolynomials, BandedMatrices, BlockBandedMatrices, SpecialFunctions, Plots
+using ApproxFun, MultivariateOrthogonalPolynomials, BandedMatrices, BlockBandedMatrices, SpecialFunctions, Plots, SparseArrays
 using SparseVolterraExamples
 
 #####

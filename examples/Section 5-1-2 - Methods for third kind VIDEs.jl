@@ -26,42 +26,14 @@ function solveSec512A(n,multin)
     coeff = [DirectEvalLHSP10at0(n);V[1:n-1,1:n]] \ [0;pad(Fun(x->gf(x),Jacobi(1,2, 0..1)).coefficients,n-1)]
     return coeff
 end
-
-n=40
-multin=10
-gf(x) = x^(2/3)*(10/3*x^(7/3)-3/16*x^(14/3));
-Kfun(x,y) = y;
-V = triVolterraFullKernelOpP01(Kfun,n,true);
-    V = reflectPabtoPba(n)*WLoweringP01P00(n)*V;
-    V = Conversion(Jacobi(0,0,0..1),Jacobi(1,2,0..1))[1:n,1:n]*V;
-    V = Multiplication(Fun(x->x^(2/3),Jacobi(1,2,0..1),multin),Jacobi(1,2,0..1))[1:n,1:n]*Derivative(Jacobi(0,1,0..1),1)[1:n,1:n]-V
-coeff = [DirectEvalLHSP10at0(n);V[1:n-1,1:n]]
-
-spy(log10.(abs.(sparse(coeff))),markersize=2.8,marker=:rect)
-
-coeff = [DirectEvalLHSP10at0(n);V[1:n-1,1:n]] \ [0;pad(Fun(x->gf(x),Jacobi(1,2, 0..1)).coefficients,n-1)]
-plot(x->(Fun(Jacobi(0,1,0..1),coeff)(x)-(x)^(10/3)),0,1,grid=false,xlabel="x",ylabel="error",label=false)
-
-
 ####
 ## Plot the analytic solution against the computed solution
-coeff = solveSec512A(40,100)
+coeff = solveSec512A(50,40)
 plot(Fun(Jacobi(0,1,0..1),coeff),grid=false,xlabel="x",ylabel="u(x)",label="sparse method")
 plot!(x->(x)^(10/3),0,1,grid=false,xlabel="x",ylabel="u(x)",label="analytic solution")
 ####
 ## Check the numerical error.
-## A loop over the polynomial order then gives the convergence plot in Figure 2.
 plot(x->(Fun(Jacobi(0,1,0..1),coeff)(x)-(x)^(10/3)),0,1,grid=false,xlabel="x",ylabel="error",label=false)
-
-
-gf(x) = x^(2/3)*(10/3*x^(7/3)-3/16*x^(14/3));
-Kfun(x,y) = y;
-V = triVolterraFullKernelOpP01(Kfun,n,true);
-    V = reflectPabtoPba(n)*WLoweringP01P00(n)*V;
-    V = Conversion(Jacobi(0,0,0..1),Jacobi(1,2,0..1))[1:n,1:n]*V;
-    V = Multiplication(Fun(x->x^(2/3),Jacobi(1,2,0..1),multin),Jacobi(1,2,0..1))[1:n,1:n]*Derivative(Jacobi(0,1,0..1),1)[1:n,1:n]-V
-coeff = [DirectEvalLHSP10at0(n);V[1:n-1,1:n]] \ [0;pad(Fun(x->gf(x),Jacobi(1,2, 0..1)).coefficients,n-1)]
-
 
 #############################
 ## Problem in Equation (18)
@@ -82,10 +54,9 @@ function solveSec512B(n,multin)
 end
 ####
 ## Plot the analytic solution against the computed solution
-coeff = solveSec512B(80,80)
+coeff = solveSec512B(80,30)
 plot(Fun(Jacobi(0,1,0..1),coeff),grid=false,xlabel="x",ylabel="u(x)",label="sparse method")
 plot!(x->(x)^(9/2),0,1,grid=false,xlabel="x",ylabel="u(x)",label="analytic solution")
 ####
 ## Check the numerical error.
-## A loop over the polynomial order then gives the convergence plot in Figure 2.
 plot(x->(Fun(Jacobi(0,1,0..1),coeff)(x)-(x)^(9/2)),0,1,grid=false,xlabel="x",ylabel="error",label=false)

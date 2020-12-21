@@ -61,7 +61,7 @@ function solveSec511B(n)
 end
 ####
 ## Compute the solution
-coeff = solveSec511B(20)
+coeff = solveSec511B(15)
 u = Fun(Jacobi(0,1,0..1), coeff)
 ####
 ## Plot the computed and analytic solution
@@ -99,7 +99,7 @@ function solveSec511C(n)
 end
 ####
 ## Compute the solution
-coeff = solveSec511C(20)
+coeff = solveSec511C(15)
 u = Fun(Jacobi(0,1,0..1), coeff)
 ####
 ## Plot the computed and analytic solution
