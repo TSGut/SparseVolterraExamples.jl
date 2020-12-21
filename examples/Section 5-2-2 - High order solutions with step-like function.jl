@@ -1,5 +1,5 @@
 #############################
-##  Numerical experiments associated with section 5.3.2
+##  Numerical experiments associated with section 5.2.2
 #############################
 ## This file contains the numerical experiments used to compare our method with
 ## Chebfun's Volterra integral equation implementation when high polynomial orders are required.
@@ -11,7 +11,7 @@ using SparseVolterraExamples
 
 #####
 ## First, we can check that the stated arctan function indeed approximates a step-like function.
-## This is in Figure 5(a).
+## This is in Figure 6(a).
 v(x,K) = atan(K*x)
     plot(x->v(x,10),0,1, legend=:true , xlabel = "x", label="k=10" ,ylabel = "u_2(x,K)",  legendfontsize=12, tickfontsize=10, thickness_scaling = 1.2 , grid=:none)
     plot!(x->v(x,50),0,1, legend=:true , xlabel = "x", label="k=50" ,ylabel = "u_2(x,K)",  legendfontsize=12, tickfontsize=10, thickness_scaling = 1.2 , grid=:none)
@@ -19,8 +19,7 @@ v(x,K) = atan(K*x)
     plot!(x->v(x,200),0,1, legend=:bottomright , xlabel = "x", label="k=200" , ylabel = "u_2(x,k)", legendfontsize=12, tickfontsize=10, thickness_scaling = 1.2 , grid=:none)
 
 #####
-## Now we work towards Table 2 and Figure 4.
-## First we define the Kernel and g(x,k) as in section 5.3.2.
+## First we define the Kernel and g(x,k) as in section 5.2.2.
 gf(x,k) = k/(k^2*x^2+1)-(exp(x^2)*atan(k*x))/(2*k^2)+(exp(x^2)*x)/(2*k)-1/2*exp(x^2)*x^2*atan(k*x)
 Kfun(x,y) = y*exp(x^2)
 
@@ -28,7 +27,7 @@ Kfun(x,y) = y*exp(x^2)
 ## Solver function with step-by-step explanation for given k and with polynomial degree 'n'
 function solveSec532(k,n,gf,Kfun)
     gF = Fun(x->gf(x,k),Jacobi(1,2, 0..1),n)             # Approximate g in the appropriate basis
-    V = triVolterraFullKernelOpP01(Kfun,n,true,155)    # The following steps generate the appropriate Volterra operator
+    V = triVolterraFullKernelOpP01(Kfun,n,true,155)      # The following steps generate the appropriate Volterra operator
         V = reflectPabtoPba(n)*WLoweringP01P00(n)*V
         V = Conversion(Jacobi(0,0,0..1),Jacobi(1,2,0..1))[1:n,1:n]*V[1:n,1:n]
         V = Derivative(Jacobi(0,1,0..1),1)[1:n,1:n]-V
@@ -51,7 +50,7 @@ using BenchmarkTools
 @benchmark solveSec532(200,300,gf,Kfun)
 
 #####
-## Now we plot the operator bandedness for the k=100 example, this is basically Figure 5(b).
+## Now we plot the operator bandedness for the k=100 example, this is basically Figure 6(b).
 function OperatorSec532(k,n,Kfun)
     V = triVolterraFullKernelOpP01(Kfun,n,true,155)    # The following steps generate the appropriate Volterra operator
         V = reflectPabtoPba(n)*WLoweringP01P00(n)*V

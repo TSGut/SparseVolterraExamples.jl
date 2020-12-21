@@ -1,5 +1,5 @@
 #############################
-##  Numerical experiments associated with section 5.4
+##  Numerical experiments associated with section 5.3
 #############################
 ## This file contains the numerical experiments used for the highly oscillatory Bessel kernel example,
 ## which was originally featured by Nick Hale in https://doi.org/10.1093/imanum/dry042
@@ -9,7 +9,7 @@ using ApproxFun, MultivariateOrthogonalPolynomials, BandedMatrices, BlockBandedM
 using SparseVolterraExamples
 
 ####
-## First we define the Kernel and g(x) as in section 5.4.
+## First we define the Kernel and g(x) as in section 5.3.
 ## As mentioned in the paper, it is sensible to use pre-existing implementations to compute the Bessel functions
 Kfun(x,y)=besselj(μ,ω*(x-y))
 g(x) = besselj(μ+ν,ω*x)+1/(2*x^2)*((ν-1)*(ν-2)*besselj(ν-1,ω*x)+(ν+1)*(ν+2)*besselj(ν+1,ω*x))
@@ -29,7 +29,7 @@ end
 
 ####
 ## Compute the solution with same parameters as discussed by Hale and in our paper
-## This correponds to computing the solution in Figure 6(a).
+## This correponds to computing the solution in Figure 7(a).
 ν = 3
 μ = 2
 ω = 20
@@ -47,7 +47,7 @@ function errorvals(max,step,u)
     return errorvec
 end
 ####
-## Plot successive errors to produce something like Figure 6(b). The exact shape of the plot depends on how dense we make the steps in n.
+## Plot successive errors to produce something like Figure 7(b). The exact shape of the plot depends on how dense we make the steps in n.
 ## Note that for low polynomial orders, since the order is too low to resolve the oscillations, the error varies a lot.
 ## Only once the polynomial order can resolve the oscillations do we see sensible convergence.
 errorvec = errorvals(450,40,u)

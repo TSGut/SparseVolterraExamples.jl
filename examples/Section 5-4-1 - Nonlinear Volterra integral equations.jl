@@ -1,5 +1,5 @@
 #############################
-##  Numerical experiments associated with section 5.5.1
+##  Numerical experiments associated with section 5.4.1
 #############################
 ## Nonlinear equations are treated by first defining an objective function, then using standard iterative methods
 ## such as Newton's method via NLsolve.jl. Using more sophisticated methods, linesearches etc. can sometimes result in significant speed boosts.

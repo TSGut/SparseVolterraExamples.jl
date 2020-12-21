@@ -1,5 +1,5 @@
 #############################
-##  Numerical experiments associated with section 5.5.2
+##  Numerical experiments associated with section 5.4.2
 #############################
 ## In general, VIDEs are implemented as a combination of the approaches for nonlinear and integro-differential equations.
 ## Whether this is more efficient than standard methods once again depends on the sparsity of the resulting operator
