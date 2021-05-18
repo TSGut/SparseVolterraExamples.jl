@@ -22,6 +22,6 @@ The examples folder contains scripts with detailed comments. Evaluating line-by-
 
 # References
 
-- Gutleb, T. S. (2020). A fast sparse spectral method for nonlinear integro-differential Volterra equations with general kernels. arXiv:2005.06081.
+- Gutleb, T. S. (2021) ‘A Fast Sparse Spectral Method for Nonlinear Integro-Differential Volterra Equations with General Kernels’. Advances in Computational Mathematics, vol. 47, no. 3, https://doi.org/10.1007/s10444-021-09866-7.
 
-- Gutleb, T. S., & Olver, S. (2020). A sparse spectral method for Volterra integral equations using orthogonal polynomials on the triangle. SIAM Journal on Numerical Analysis, 58(3), 1993-2018.
+- Gutleb, T. S., & Olver, S. (2020). 'A Sparse Spectral Method for Volterra Integral Equations Using Orthogonal Polynomials on the Triangle'. SIAM Journal on Numerical Analysis, 58(3), 1993-2018. https://doi.org/10.1137/19M1267441
