@@ -1,7 +1,7 @@
 name = "SparseVolterraExamples"
 uuid = "44eafa75-985e-4dfb-9d8b-35f1d8c90988"
 authors = ["Timon Salar Gutleb <timon.gutleb@gmail.com>"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 ApproxFun = "28f2ccd6-bb30-5033-b560-165f7b14dc2f"
