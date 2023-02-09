@@ -12,7 +12,7 @@ While the package is not meant for nor setup for user-friendly general use, the 
 # Installation
 
 The current version has been tested with Julia 1.8.5. Newer Julia releases may work if all the appropriate dependencies can be resolved.
-For the version used in the papers which includes tests and has been tested up to Julia v.1.5.3, see [v0.1.1].(https://github.com/TSGut/SparseVolterraExamples.jl/releases/tag/v0.1.1)
+For the version used in the papers which includes tests and has been tested up to Julia v.1.5.3, see [v0.1.1](https://github.com/TSGut/SparseVolterraExamples.jl/releases/tag/v0.1.1).
 
 As an unregistered Julia package, you can install this package via ```] add https://github.com/TSGut/SparseVolterraExamples.jl``` or alternatively ```Pkg.add(PackageSpec(url="https://github.com/TSGut/SparseVolterraExamples.jl"))```. Then explore the files in the examples folder.
 
