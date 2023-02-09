@@ -1,7 +1,8 @@
 module SparseVolterraExamples
 
-    using ApproxFun, NLsolve, BandedMatrices, BlockBandedMatrices, LinearAlgebra, BlockArrays, MultivariateOrthogonalPolynomials, Test, Plots
+    using ApproxFun, NLsolve, BandedMatrices, BlockBandedMatrices, LinearAlgebra, LazyArrays, BlockArrays, MultivariateOrthogonalPolynomials, Test, Plots
 
+    include("clenshaw.jl")
     include("triIntegroDiff.jl")
     include("triQEgen.jl")
     include("triVolterraFullKernel.jl")

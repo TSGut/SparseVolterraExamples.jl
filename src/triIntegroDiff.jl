@@ -6,10 +6,10 @@
 #############################
 ##   Provides a measure of distance between guess and true solution of non-linear 2nd kind Volterra where f(u) is the nonlinearity
 ####
-function triNonLinearVolterraObjective(uguess,f,K,g::Fun,depth)
+function triNonLinearVolterraObjective(uguess,f,K,g::Fun,depth,kerneldepth)
     u = Fun(Jacobi(0,1,0..1),uguess)
     fofu = pad(Fun(x->f(u(x)),Jacobi(0,1,0..1)).coefficients,depth)
-    V = Conversion(Jacobi(0,0,0..1),Jacobi(0,1,0..1))[1:depth,1:depth]*reflectPabtoPba(depth)*WLoweringP01P00(depth)*triVolterraFullKernelOpP01(K,depth,true)
+    V = Conversion(Jacobi(0,0,0..1),Jacobi(0,1,0..1))[1:depth,1:depth]*reflectPabtoPba(depth)*WLoweringP01P00(depth)*triVolterraFullKernelOpP01(K,depth,true,kerneldepth)
     return pad(uguess,depth)-V*fofu-pad(g.coefficients,depth)
 end
 
@@ -20,34 +20,17 @@ end
 ##
 ##   Currently hard-coded for 1st and 2nd derivative problems only but easy to extend to general case when needed.
 ####
-function triNonLinearIntegroDiffVolterraObjective(uguess,f,K,g,depth,DD,init,lincomb,kerneldepth)
+function triNonLinearIntegroDiffVolterraObjective(uguess,f,K,g,depth,DD,init,lincomb,kerneldepth,constkernel::Bool)
     u = Fun(Jacobi(0,1,0..1),uguess)
     gF = Fun(x->g(x),Jacobi(DD,DD+1, 0..1))
     fofu = pad(Fun(x->lincomb(x)+f(u(x)),Jacobi(0,1,0..1)).coefficients,depth)
-    Kfun = Fun((x,y)->K(x,y),JacobiTriangle())
-    if length(Kfun.coefficients) == 1    # Check if kernel is a constant, in which case explicit monomial method is used
-        V = triVolterraOpP01([Kfun.coefficients[1],0.,0.,0.],depth,true)
+    if constkernel # Check if kernel is a constant, in which case explicit monomial method is used
+        sp = JacobiTriangle()
+        xy = axes(sp,1)
+        x,y = first.(xy),last.(xy)
+        V = triVolterraOpP01([K(0.5,0.5),0.,0.,0.],depth,true)
     else
         V = triVolterraFullKernelOpP01(K,depth,true,kerneldepth)
-    end
-    V = reflectPabtoPba(depth)*WLoweringP01P00(depth)*V
-    V = Conversion(Jacobi(0,0,0..1),Jacobi(DD,1+DD,0..1))[1:depth,1:depth]*V[1:depth,1:depth]
-    if DD==1
-        return pad([u(0)-init[1];pad((Derivative(DD)*u).coefficients,depth)-V*fofu-pad(gF.coefficients,depth)],depth)
-    end
-    if DD==2
-        return pad([u(0)-init[1];(Derivative(DD-1)*u)(0)-init[2];pad((Derivative(DD)*u).coefficients,depth)-V*fofu-pad(gF.coefficients,depth)],depth)
-    end
-end
-function triNonLinearIntegroDiffVolterraObjective(uguess,f,K,g,depth,DD,init,lincomb)
-    u = Fun(Jacobi(0,1,0..1),uguess)
-    gF = Fun(x->g(x),Jacobi(DD,DD+1, 0..1))
-    fofu = pad(Fun(x->lincomb(x)+f(u(x)),Jacobi(0,1,0..1)).coefficients,depth)
-    Kfun = Fun((x,y)->K(x,y),JacobiTriangle())
-    if length(Kfun.coefficients) == 1    # Check if kernel is a constant, in which case explicit monomial method is used
-        V = triVolterraOpP01([Kfun.coefficients[1],0.,0.,0.],depth,true)
-    else
-        V = triVolterraFullKernelOpP01(K,depth,true)
     end
     V = reflectPabtoPba(depth)*WLoweringP01P00(depth)*V
     V = Conversion(Jacobi(0,0,0..1),Jacobi(DD,1+DD,0..1))[1:depth,1:depth]*V[1:depth,1:depth]

@@ -25,9 +25,9 @@ Kfun(x,y) = y*exp(x^2)
 
 #####
 ## Solver function with step-by-step explanation for given k and with polynomial degree 'n'
-function solveSec532(k,n,gf,Kfun)
+function solveSec532(k,n,gf,Kfun,M)
     gF = Fun(x->gf(x,k),Jacobi(1,2, 0..1),n)             # Approximate g in the appropriate basis
-    V = triVolterraFullKernelOpP01(Kfun,n,true,155)      # The following steps generate the appropriate Volterra operator
+    V = triVolterraFullKernelOpP01(Kfun,n,true,M)      # The following steps generate the appropriate Volterra operator
         V = reflectPabtoPba(n)*WLoweringP01P00(n)*V
         V = Conversion(Jacobi(0,0,0..1),Jacobi(1,2,0..1))[1:n,1:n]*V[1:n,1:n]
         V = Derivative(Jacobi(0,1,0..1),1)[1:n,1:n]-V
@@ -38,7 +38,7 @@ end
 #####
 ## Now we can compute and plot a specific example for k=100, plotting both the numerical approximation and the analytic solution.
 ## Computing errors for various k is a bit more work since automatic convergence testing is not currently implemented but a straightforward for loop can do it from here.
-u = solveSec532(100,50,gf,Kfun)
+u = solveSec532(100,50,gf,Kfun,12)
 plot(u, label="sparse method")
     plot!(x->v(x,100),0,1, legend=:bottomright , xlabel = "x", label="analytic" ,ylabel = "u_2(x,100)",  legendfontsize=12, tickfontsize=10, thickness_scaling = 1.2 , grid=:none)
 
@@ -46,13 +46,13 @@ plot(u, label="sparse method")
 ## We can also use BenchmarkTools to get a somewhat robust time estimation.
 ## Note however that this obviously strongly depends on the hardware you are using.
 using BenchmarkTools
-@benchmark solveSec532(100,50,gf,Kfun)
-@benchmark solveSec532(200,300,gf,Kfun)
+@benchmark solveSec532(100,50,gf,Kfun,20)
+@benchmark solveSec532(200,300,gf,Kfun,20)
 
 #####
 ## Now we plot the operator bandedness for the k=100 example, this is basically Figure 6(b).
-function OperatorSec532(k,n,Kfun)
-    V = triVolterraFullKernelOpP01(Kfun,n,true,155)    # The following steps generate the appropriate Volterra operator
+function OperatorSec532(k,n,Kfun,M)
+    V = triVolterraFullKernelOpP01(Kfun,n,true,M)    # The following steps generate the appropriate Volterra operator
         V = reflectPabtoPba(n)*WLoweringP01P00(n)*V
         V = Conversion(Jacobi(0,0,0..1),Jacobi(1,2,0..1))[1:n,1:n]*V[1:n,1:n]
         V = Derivative(Jacobi(0,1,0..1),1)[1:n,1:n]-V
@@ -62,4 +62,4 @@ end
 #####
 ## Plots.jl's spy plot is not currently compatible with these types, so we instead convert to generic sparse for visualization.
 ## The exact bandedness properties depend on the chosen degrees and parameters but here is a standard example
-spy(sparse(OperatorSec532(100,300,Kfun)),markersize=2.8,marker=:rect)
+spy(sparse(OperatorSec532(100,300,Kfun,20)),markersize=2.8,marker=:rect)

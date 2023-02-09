@@ -20,7 +20,7 @@ g(x) = exp(x)+1/3*x*(1-exp(3*x))
     n = 15 # Desired polynomial order of approximation for accuracy
 ####
 ## Define the objective function and compute the solution using a standard Newton method
-objective(x) = triNonLinearVolterraObjective(x,f,K,gFun,n)
+objective(x) = triNonLinearVolterraObjective(x,f,K,gFun,n,2)
 sol = nlsolve(objective,zeros(n),method=:newton,ftol=1e-8)
 ####
 ## Plot function aganinst analytic solution
@@ -42,7 +42,7 @@ g(x) = sin(x)+1/4*sin(x)^2-1/4*x^2
     n = 14 # Desired polynomial order of approximation for accuracy
 ####
 ## Define the objective function and compute the solution using a standard Newton method
-objective(x) = triNonLinearVolterraObjective(x,f,K,gFun,n)
+objective(x) = triNonLinearVolterraObjective(x,f,K,gFun,n,2)
 sol = nlsolve(objective,zeros(n),method=:newton,ftol=1e-15)
 ####
 ## Plot function aganinst analytic solution
