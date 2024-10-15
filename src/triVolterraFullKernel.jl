@@ -78,7 +78,7 @@ function triVolterraFullKernelOpP01(K::Function,depth::Integer,flip::Bool,kernel
             Kfun = sp[:,Block.(1:kerneldepth)] \ (@. K(x, y))
         end
         N = blocksize(Kfun)[1]
-        cfs = PseudoBlockArray(pad(Kfun, sum(1:N)),1:N)
+        cfs = BlockedArray(pad(Kfun, sum(1:N)),1:N)
         C = ClenshawRecurrenceData(sp,N+2)
         D = triQEygenP01(depth)
         B2 = Fill(D,N) .* view(cfs,Block(N))
